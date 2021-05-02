@@ -1,0 +1,7 @@
+# Copy this file as config.ini to let the server read the configuration.
+
+[DEFAULT]
+# WebSocket port
+Port = 12624
+# The sound file must be placed in the "sound/" directory, and only .wav is supported.
+SoundFile = alarm-sound.wav
