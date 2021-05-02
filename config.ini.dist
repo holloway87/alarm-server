@@ -2,6 +2,6 @@
 
 [DEFAULT]
 # WebSocket port
-Port = 12624
+Port = 12614
 # The sound file must be placed in the "sound/" directory, and only .wav is supported.
 SoundFile = alarm-sound.wav
