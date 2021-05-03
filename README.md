@@ -91,3 +91,10 @@ timer_repeat 1h;2021-05-01 10:05:02
 
 The first part is the timer key, the second part, separated with a semicolon,
 is the next alarm date for the timer.
+
+
+## Clients
+
+A simple console client script can be used with the `client.py` file.
+
+There's also a react js web interface, available [here](https://github.com/holloway87/alarm-server-web-client).
