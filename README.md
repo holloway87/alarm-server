@@ -43,8 +43,8 @@ file.  You can copy the provided template file in the root directory:
 # cp config.ini.dist config.ini
 ```
 
-There are two configuration values, the web socket server port, and the alarm
-sound file name.
+There are configuration values for the web socket server port, the alarm sound
+file name and to enable or disable the shutdown command.
 
 Default port: `12614`
 
@@ -52,6 +52,12 @@ Default port: `12614`
 
 Copy your alarm sound file in the `sound/` directory in the project.  It needs
 to be a `.wav` file.  Then specify the file name in the configuration.
+
+### Shutdown command
+
+To enable the `shutdown` command set the value to either `yes`, `on`, `true` or
+`1`.  The server script must also be run as root for it to work.  This will call
+the system `poweroff` call, so the machine will be turned off.
 
 
 ## Command list on the web socket server
@@ -67,6 +73,7 @@ to be a `.wav` file.  Then specify the file name in the configuration.
 * timer_stop_repeat 10(s|m|h)
 * timer_stop_repeat 16:20
 * list
+* shutdown
 
 An added timer needs to be stopped with the exact same time phrase.
 

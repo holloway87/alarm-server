@@ -5,3 +5,4 @@
 Port = 12614
 # The sound file must be placed in the "sound/" directory, and only .wav is supported.
 SoundFile = alarm-sound.wav
+EnableShutdown = 0

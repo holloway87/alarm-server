@@ -6,6 +6,7 @@ from lib.CommandHandler import CommandHandler
 from lib.TimerHandler import TimerHandler
 from lib.command.ListCommand import ListCommand
 from lib.command.PlayCommand import PlayCommand
+from lib.command.ShutdownCommand import ShutdownCommand
 from lib.command.StopCommand import StopCommand
 from lib.command.TimerCommand import TimerCommand
 from lib.command.TimerRepeatCommand import TimerRepeatCommand
@@ -21,9 +22,10 @@ class AlarmServer:
     """
     alarm_player: AlarmPlayer
     command_handler: CommandHandler
+    enable_shutdown: bool
     timer_handler: TimerHandler
 
-    def __init__(self, sound_file: str) -> None:
+    def __init__(self, sound_file: str, enable_shutdown: bool) -> None:
         """
         Creates all needed instances.
 
@@ -31,6 +33,7 @@ class AlarmServer:
         """
         self.alarm_player = AlarmPlayer(sound_file)
         self.command_handler = CommandHandler()
+        self.enable_shutdown = enable_shutdown
         self.timer_handler = TimerHandler(self.alarm_player)
         self.init_commands()
 
@@ -64,6 +67,8 @@ class AlarmServer:
         self.command_handler.add_command('timer_repeat', TimerRepeatCommand(self.timer_handler))
         self.command_handler.add_command('timer_stop', TimerStopCommand(self.timer_handler))
         self.command_handler.add_command('timer_stop_repeat', TimerStopRepeatCommand(self.timer_handler))
+        if self.enable_shutdown:
+            self.command_handler.add_command('shutdown', ShutdownCommand())
 
     async def loop(self) -> None:
         """

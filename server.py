@@ -13,6 +13,7 @@ async def main():
 
     config = configparser.ConfigParser()
     config.read(config_file)
+    enable_shutdown = config.getboolean('DEFAULT', 'EnableShutdown')
     sound_file = config.get('DEFAULT', 'SoundFile')
     web_socket_port = int(config.get('DEFAULT', 'Port'))
 
@@ -20,7 +21,7 @@ async def main():
     if not os.path.exists(sound_file):
         raise FileNotFoundError('Sound file not found: ' + sound_file)
 
-    alarm_server = AlarmServer(sound_file)
+    alarm_server = AlarmServer(sound_file, enable_shutdown)
     start_server = websockets.serve(alarm_server.handle_socket_client, '0.0.0.0', web_socket_port)
     alarm_task = asyncio.create_task(alarm_server.loop())
     await asyncio.gather(alarm_task, start_server)
